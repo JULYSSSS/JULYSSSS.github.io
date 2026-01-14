@@ -1,0 +1,707 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <TITLE>Spatial-Temporal Generative ConvNet: Learning Energy-Based Models for Video Synthesis</TITLE>
+  <META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+
+  <META content=IE=Edge,chrome=1 http-equiv=X-UA-Compatible>
+  <LINK rel=stylesheet href="css/style.css" media=screen>
+  <STYLE type=text/css>
+    @media Print {
+      #STTBimg {
+        DISPLAY: none
+      }
+
+      #STTBimg2 {
+        DISPLAY: none
+      }
+    }
+  </STYLE>
+  <style type="text/css">
+    body {
+      background: #FFFFFF;
+      text-align: center;
+    }
+
+    div {
+      width: 970px;
+      margin: 0 auto;
+      background: #fff;
+      text-align: left;
+    }
+
+    center {
+    display: block;
+    text-align: -webkit-center;
+    unicode-bidi: isolate;
+    }
+
+    .STYLE2 {
+      font-size: 18px
+    }
+
+    .STYLE6 {
+      font-size: 24pt
+    }
+
+    .STYLE8 {
+      color: #CC0000
+    }
+
+    .STYLE14 {
+      color: #000000;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .STYLE15 {
+      color: #000000
+    }
+
+    .STYLE16 {
+      font-size: 22px
+    }
+
+    .STYLE20 {
+      color: #FF0000;
+      font-weight: bold;
+    }
+
+    .STYLE22 {
+      color: #0000FF
+    }
+
+    .div-table-row {
+    display: table-row;
+    width: auto;
+    clear: both;
+    } 
+
+    .div-table-col-2 {
+      float: left;
+      display: table-column;
+      width: 48%;
+    }
+
+    .div-table-col-3 {
+    float: left;
+    display: table-column;
+    width: 33%;
+  }
+
+  h4 {
+    font-size: 24px;
+    margin: 30px 15px 20px 0;
+  }
+
+  .div-table-col-2-2 {
+    float: left;
+    display: table-column;
+    width: 52%;
+  }
+
+  .div-table-col-2-1 {
+    float: left;
+    display: table-column;
+    width: 43%;
+  }
+
+  img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+  }
+
+
+body{
+	font-family:times, serif;
+  background: #FFFFFF;
+  text-align: center;
+	/* background-color:#eee; */
+}
+h1{
+	font-size: 24pt;
+	margin: 0 auto;
+	letter-spacing: -1px;
+	alignment-baseline: middle;
+	text-align-last: center;
+}
+h2{
+	font-size: 28px;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 20px;
+	margin-left: 0px;
+}
+h3{
+	font-size:20px;
+	margin:10px 0 20px 0;
+}
+
+h5{
+	font-size:18px;
+	margin:3px 0 3px 0;
+}
+p{
+	font-size:16px;
+	line-height:20px;
+	margin:0 0 15px 0;
+}
+a{
+	text-decoration:none;
+	color:#0b8bbb;
+}
+a:hover{
+	color: #1C68E3;
+	/*margin-left: 5px;*/
+}
+
+.line{
+	clear: both;
+	border-bottom: 2px #608FDA solid;
+	width: 100%;
+	margin:20 0 0 0;
+}
+
+.line-seg{
+	clear: both;
+	border-bottom: 2px #B40431 solid;
+	width: 100%;
+	margin:10 0 0 0;
+}
+/* ------------ */
+/* -- Header -- */
+/* ------------ */
+#header{
+	float: left;
+	width: 100%;
+	height: 300px;
+	margin: 0 auto;
+	background-color: #CBF0FE;
+	clear: both;
+}
+#header #contact-details{
+	float: left;
+	width: 400px;
+	margin-top: 18px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+}
+#header #header-content .contact{
+	font-size:16px;
+	color:#888;
+	margin:0;
+}
+#header #header-content .contact span{
+	color: #444;
+	width: 200px;
+	float: left;
+	margin-left: 10px;
+}
+#header #header-photo{
+	float: none;
+	height: auto;
+	width: 960px;
+	padding: 0px;
+	text-align: center;
+	clear: none;
+	margin: 0 auto;
+	padding: 120px 0px 0px 0;
+}
+/* ------------- */
+/* -- Content -- */
+/* ------------- */
+#content .cv-section{
+	width: auto;
+	background-color: #D8ECF5;
+	margin: 0 auto;
+}
+
+#content .cv-section h4.title{
+	font-size: 22pt;
+	color: #0b8bbb;
+	margin: 0px 0px 0px 0px;
+	background-color: #A6CAF0;
+	text-align:left
+}
+#content .cv-section h4.meta{
+	font-size: 14pt;
+	color: #777;
+}
+
+#content .cv-section p{
+	font-size: 14pt;
+	color: #555;
+	letter-spacing: 0;
+	margin: 5px 5px 5px 15px;
+}
+#content .cv-section-item{
+	background-color: #FFFFFF;
+	-webkit-box-shadow: 0 0 10px #aaa;
+	-moz-box-shadow: 0 0 10px #aaa;
+	box-shadow: 0 0 10px #aaa;
+	height: auto;
+	width: 960px;
+	margin: 0 auto;
+}
+
+#content .cv-section-item2{
+	background-color: #E4E4E4;
+	-webkit-box-shadow: 0 0 10px #aaa;
+	-moz-box-shadow: 0 0 10px #aaa;
+	box-shadow: 0 0 10px #aaa;
+	height: auto;
+	width: 960px;
+	margin: 0 auto;
+	padding: 5px 5px 5px 5px;
+}
+
+#content .cv-section2{
+	width: auto;
+	height: auto;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+}
+
+#content .cv-section2 h4.title{
+	font-size: 22pt;
+	color: #0b8bbb;
+	margin: 0px 0px 0px 0px;
+	background-color: #A6CAF0;
+}
+#content .cv-section2 h4.meta{
+	font-size: 14pt;
+	color: #777;
+}
+
+#content .cv-section2 p{
+	font-size: 14pt;
+	color: #555;
+	letter-spacing: 0;
+	margin: 5px 5px 5px 15px;
+	alignment-baseline: middle;
+}
+
+#content .cv-section2 p2{
+	font-size: 14pt;
+	color: #858585;
+	letter-spacing: 0;
+	margin: 5px 5px 5px 15px;
+	alignment-baseline: middle;
+}
+
+.div-table-reference {
+	width:auto;
+	background-color:#f7f7f9;
+ 	padding:9px 14px;
+  	border:1px solid #e1e1e8; 
+  	border-radius:4px;
+   	margin-bottom:14px;
+	margin-right: 14px;
+}
+
+.div-table
+{
+	display:table;         
+	width:auto;         
+	/*background-color:#eee;*/
+	/*border:1px solid  #666666;         */
+	border-spacing:0px;/*cellspacing:poor IE support for  this*/
+}
+
+.div-table-col-single
+{
+	float:left;/*fix for  buggy browsers*/
+	display:table-column;         
+	width:96%;
+   
+}
+
+
+
+.div-table-col
+{
+	float:left;/*fix for  buggy browsers*/
+	display:table-column;         
+	width:48%;
+	
+}
+
+.div-table-col-4
+{
+	float:left;/*fix for  buggy browsers*/
+	display:table-column;         
+	width:24%;
+	border:1px solid  #ccc;  
+	background-color:#ccc;  
+}
+
+.div-table-col-3s
+{
+	float:left;/*fix for  buggy browsers*/
+	display:table-column;         
+	width:32%;
+	border:1px solid  #ccc;  
+	background-color:#ccc;  
+}
+
+.div-table-col-full
+{
+	float:left;/*fix for  buggy browsers*/
+	display:table-column;         
+	width:100%;
+	border:1px solid  #ccc;  
+	background-color:#ccc;  
+}
+
+.bib_table{
+	background-color: #E8E8E8 ;
+	border: 1px #808080 solid;
+	border-radius: 4px;
+	font: "Ubuntu Mono";
+	padding: 5px 5px 5px 5px;
+	margin: 5px;
+	font-size:12px;
+	line-height: 16px;
+}
+  </style>
+
+
+  <META name=GENERATOR content="MSHTML 9.00.8112.16441">
+</head>
+
+<body class=" hasGoogleVoiceExt" screen_capture_injected="true">
+
+  <div class="container">
+    <br><br>
+    <h1 class="STYLE6" style="TEXT-ALIGN: center"><span class="STYLE6" style="TEXT-ALIGN: center">Spatial-Temporal
+        Generative ConvNet</span>: </H1>
+    <h1 class="STYLE6" style="TEXT-ALIGN: center">Learning Energy-Based Models for Video Synthesis </H1>
+    <br>
+    <span class="STYLE2"><br>
+    </span>
+    <p style='text-align: center;'>
+      <span style="font-size: 18px"><a class='urllink' href='http://www.stat.ucla.edu/~jxie/' title=''
+          rel='nofollow'>Jianwen Xie</a>,
+        <a class='urllink' href='http://www.stat.ucla.edu/~sczhu/' title='' rel='nofollow'>Song-Chun Zhu</a>,
+        and <a class='urllink' href='http://www.stat.ucla.edu/~ywu/' title='' rel='nofollow'>Ying Nian Wu</a>
+      </span><br>
+    </p>
+    <p class='vspace STYLE2' style='text-align: center;'>
+      University of California, Los Angeles (UCLA), USA </p>
+
+
+    <div class=vspace> </div>
+    <br>
+    <h2 align="center">Abstract</h2>
+    <P align="justify">Video sequences contain rich dynamic patterns, such as dynamic texture patterns that exhibit
+      stationarity in the temporal
+      domain, and action patterns that are non-stationary in either spatial or temporal domain. We show that a
+      spatialtemporal
+      generative ConvNet can be used to model and synthesize dynamic patterns. The model defines a probability
+      distribution on the video sequence, and the log probability is defined by a spatial-temporal ConvNet that consists
+      of
+      multiple layers of spatial-temporal filters to capture spatialtemporal patterns of different scales. The model can
+      be
+      learned from the training video sequences by an “analysis by synthesis” learning algorithm that iterates the
+      following
+      two steps. Step 1 synthesizes video sequences from the currently learned model. Step 2 then updates the model
+      parameters
+      based on the difference between the synthesized video sequences and the observed training sequences. We
+      show that the learning algorithm can synthesize realistic dynamic patterns </P>
+    <div class=line> </div>
+    <p></p>
+    <h2>Paper </h2>
+    <P>The CVPR paper can be downloaded <a class=urllink title="" href="./STGConvNet_file/doc/STGConvNet.pdf"
+        rel=nofollow><span class="STYLE20">here</span></a>. </P>
+    <P>The CVPR tex file can be downloaded <a class=urllink title=""
+        href="./STGConvNet_file/tex/STGConvNet_CVPR2017_tex.zip" rel=nofollow><span class="STYLE20">here</span></a>.
+    </P>
+    <P>The TPAMI paper can be downloaded <a class=urllink title="" href="./STGConvNet_file/doc/STGConvNet_PAMI.pdf"
+        rel=nofollow><span class="STYLE20">here</span></a>. </P>
+    <P>The TPAMI tex file can be downloaded <a class=urllink title=""
+        href="./STGConvNet_file/tex/STGConvNet_PAMI_camera_ready.zip" rel=nofollow><span
+          class="STYLE20">here</span></a>. </P>
+    <P>The poster can be downloaded <a class=urllink title="" href="./STGConvNet_file/poster/cvpr_poster.pdf"
+        rel=nofollow><span class="STYLE20">here</span></a>. </P>
+    <div class=vspace></div>
+
+    <h2>Code and Data</h2>
+    <div>
+      <p>The <span class="STYLE22">Matlab</span> code and data for all experiments can be downloaded <a class=urllink
+          title="" href="./STGConvNet_file/code/STGConvNet_code.zip" rel=nofollow><span class="STYLE20">here</span></a>.
+      </p>
+      <p>The <span class="STYLE22">Python</span> code using tensorflow for synthesis experiment can be downloaded <a
+          class=urllink title="" href="./STGConvNet_file/code/STGConvNet-tensorflow.zip" rel=nofollow><span
+            class="STYLE20">here</span></a> or <a href="https://github.com/zilongzheng/STGConvNet"
+          class="STYLE20">Github</a>. </p>
+      <p>If you wish to use our code, please cite the following paper : </p>
+      <div class=div-table-reference>
+        <strong>Synthesizing Dynamic Patterns by Spatial-Temporal Generative ConvNet</strong><br>
+        Jianwen Xie, Song-Chun Zhu, Ying Nian Wu<br>
+        <em>IEEE Conference on Computer Vision and Pattern Recognition (CVPR) </em>2017 <br>
+      </div>
+
+      <div class=div-table-reference>
+        <strong>Learning Energy-based Spatial-Temporal Generative ConvNet for Dynamic Patterns</strong><br>
+        Jianwen Xie, Song-Chun Zhu, Ying Nian Wu<br>
+        <em>IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI) </em>2019<br>
+      </div>
+    </div>
+
+    <div class=vspace></div>
+
+    <div class=line> </div>
+    <p></p>
+    <h2>Experiments</h2>
+    <h3 class="STYLE16">Experiment 1: Generating dynamic textures with only temporal stationarity </h3>
+    <p class="STYLE14">Exp 2.1: Learning from one training video </p>
+    <p class="STYLE15"> In each example, the first one is the observed video, the other three are the synthesized
+      videos.</p>
+    <form id="exp_texture" align='center'>
+      <div class="div-table" align='center'>
+        <div class="headRow" align='center'>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Burning fire </h5>
+            </center>
+          </div>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Waterfall</h5>
+            </center>
+          </div>
+        </div>
+
+        <div class="div-table-row" align='center'>
+          <div class="div-table-col-2" >
+            <center>
+              <img src="./logo.jpg" height="100">
+            </center>
+
+          </div>
+          <div class="div-table-col-2">
+            <center><img src="./logo.jpg" height="100">
+            </center>
+          </div>
+        </div>
+
+        <div class="headRow" align='center'>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Flashing lights </h5>
+            </center>
+          </div>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Washing machine washing clothes </h5>
+            </center>
+          </div>
+        </div>
+
+        <div class="div-table-row">
+          <div class="div-table-col-2">
+            <center><img src="exp1/flash_light/movie_normal.gif" height="100">
+            </center>
+
+          </div>
+          <div class="div-table-col-2">
+            <center><img src="exp1/washing_machine/movie_slow.gif" height="100">
+            </center>
+          </div>
+        </div>
+
+        <div class="headRow" align='center'>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Boiling water</h5>
+            </center>
+          </div>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Mountain stream </h5>
+            </center>
+          </div>
+        </div>
+
+        <div class="div-table-row">
+          <div class="div-table-col-2">
+            <center>
+              <center><img src="exp1/boiling_water/movie_normal.gif" height="100">
+              </center>
+
+          </div>
+          <div class="div-table-col-2">
+            <center><img src="exp1/water_stone/movie_normal.gif" height="100">
+            </center>
+          </div>
+        </div>
+
+        <div class="headRow" align='center'>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Fountain</h5>
+            </center>
+          </div>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Spring water </h5>
+            </center>
+          </div>
+        </div>
+
+        <div class="div-table-row">
+          <div class="div-table-col-2">
+            <center><img src="exp1/fountain/movie_normal.gif" height="100">
+            </center>
+          </div>
+          <div class="div-table-col-2">
+            <center><img src="exp1/spring_water/movie_normal.gif" height="100">
+            </center>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+    <p class="STYLE8"><span class="STYLE14">Exp 2.2: Learning from multiple training videos </span></p>
+    <p class="STYLE8 STYLE15">The first panel displays 30 observed videos, the second panel displays 39 synthesized
+      videos.</p>
+
+    <form id="exp_texture" align='center'>
+      <div class="div-table" align='center'>
+        <div class="headRow" align='center'>
+          <div class="div-table-col-2-1">
+            <center>
+              <h5>Observed fire videos </h5>
+            </center>
+          </div>
+          <div class="div-table-col-2-2">
+            <center>
+              <h5>Synthesized fire videos </h5>
+            </center>
+          </div>
+        </div>
+
+        <div class="div-table-row" align='center'>
+          <div class="div-table-col-2-1">
+            <center><img src="exp1/flame/obs.gif" height="107" width:56%>
+            </center>
+
+          </div>
+          <div class="div-table-col-2-2">
+            <center><img src="exp1/flame/syn.gif" height="107">
+            </center>
+
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+    <div class=line> </div>
+    <h3 class="STYLE16">Experiment 2: Generating action patterns without spatial or temporal stationarity </h3>
+    <p class="STYLE15">In the example of running cow (tiger), the first five (two) are the original videos, the rest are
+      the synthesized videos.</p>
+
+
+    <form id="exp_texture" align='center'>
+      <div class="div-table" align='center'>
+        <div class="headRow">
+          <div class="div-table-col-single">
+            <center>
+              <h5>Running cows </h5>
+            </center>
+          </div>
+        </div>
+
+        <div class="div-table-col-single">
+          <center>
+            <p><img src="exp1/cow/movie.gif" width="881" height="42"></p>
+          </center>
+        </div>
+        <div class="headRow">
+          <div class="div-table-col-single">
+            <center>
+              <h5>Runing tigers </h5>
+            </center>
+          </div>
+        </div>
+
+        <div class="div-table-col-single">
+          <center><img src="exp1/tiger/movie.gif" width="881" height="65">
+          </center>
+        </div>
+
+      </div>
+    </form>
+
+
+    <div class=line> </div>
+    <h3 class="STYLE16">Experiment 3: Learning from incomplete data </h3>
+    <p class="STYLE8 STYLE15">In each example, the first one is the ground truth video, the second one is the occluded
+      training video, and the third one is the recovered result.</p>
+
+    <form id="exp_texture">
+      <div class="div-table" align='center'>
+        <div class="headRow" align='center'>
+          <div class="div-table-col-3">
+            <center>
+              <h5>Single region masks </h5>
+            </center>
+          </div>
+          <div class="div-table-col-3">
+            <center>
+              <h5>50% missing frames </h5>
+            </center>
+          </div>
+          <div class="div-table-col-3">
+            <center>
+              <h5>50% salt and pepper masks</h5>
+            </center>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+    <div class="div-table-col-single">
+      <center>
+        <img src="exp2/chatelet/fullsize/original.gif" width="174" height="130"> <img
+          src="exp2/chatelet/fullsize/masked.gif" width="174" height="130"> <img src="exp2/chatelet/fullsize/result.gif"
+          width="174" height="130">
+      </center>
+    </div>
+
+
+  </form>
+
+  <div class=line-seg> </div>
+
+  <p></p>
+  <h2>Acknowledgement</h2>
+
+  <p align="justify">The work is supported by NSF DMS 1310391, DARPA SIMPLEX N66001-15-C-4035, ONR MURI
+    N00014-16-1-2007, and DARPA ARO W911NF-16-1-0579. We thank Zilong Zheng for assistance with python implementation.
+  </p>
+  <div class=line-seg> </div>
+
+  <p></p>
+  <h2>Reference</h2>
+
+  <p align="justify">[1] Xie, Jianwen, et al. "A theory of generative convnet." <em>International Conference on Machine
+      Learning</em>. 2016.</p>
+  <p align="justify">[2] Doretto, Gianfranco, et al. "Dynamic textures." <em>International Journal of Computer
+      Vision</em>. 2003.</p>
+  <p align="justify">[3] Goyette, Nil, et al. "A novel video dataset for change detection benchmarking." <em>IEEE
+      Transactions on Image Processing</em>. 2014.</p>
+  <div class=line> </div>
+  <h4>
+    <center><a class='urllink' href='./STGConvNet.html' title='' rel='nofollow'>Top</a> </center>
+  </h4>
+  </div>
+</div>
+</body>
+
+</html>
