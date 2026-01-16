@@ -318,8 +318,6 @@ a:hover{
    
 }
 
-
-
 .div-table-col
 {
 	float:left;/*fix for  buggy browsers*/
@@ -337,13 +335,23 @@ a:hover{
 	background-color:#ccc;  
 }
 
+.div-table-col-3
+{
+	float:left;/*fix for  buggy browsers*/
+	display:table-column;         
+	width:32%;
+	border:0px solid ; 
+
+}
+
 .div-table-col-3s
 {
 	float:left;/*fix for  buggy browsers*/
 	display:table-column;         
 	width:32%;
-	border:1px solid  #ccc;  
-	background-color:#ccc;  
+	border:0px solid ;  
+	margin-bottom: 20px;
+  margin-top: -13px;
 }
 
 .div-table-col-full
@@ -375,43 +383,48 @@ a:hover{
 
   <div class="container">
     <br><br>
-    <h1 class="STYLE6" style="TEXT-ALIGN: center"><span class="STYLE6" style="TEXT-ALIGN: center">Spatial-Temporal
-        Generative ConvNet</span>: </H1>
-    <h1 class="STYLE6" style="TEXT-ALIGN: center">Learning Energy-Based Models for Video Synthesis </H1>
+    <h1 class="STYLE6" style="TEXT-ALIGN: center"><span class="STYLE6" style="TEXT-ALIGN: center">Energy-Based Multi-Latent Variable Generative Modeling for
+      Dynamic Patterns</span></H1>
+    <!-- <h1 class="STYLE6" style="TEXT-ALIGN: center">Learning Energy-Based Models for Video Synthesis </H1> -->
     <br>
     <span class="STYLE2"><br>
     </span>
     <p style='text-align: center;'>
-      <span style="font-size: 18px"><a class='urllink' href='http://www.stat.ucla.edu/~jxie/' title=''
-          rel='nofollow'>Jianwen Xie</a>,
-        <a class='urllink' href='http://www.stat.ucla.edu/~sczhu/' title='' rel='nofollow'>Song-Chun Zhu</a>,
-        and <a class='urllink' href='http://www.stat.ucla.edu/~ywu/' title='' rel='nofollow'>Ying Nian Wu</a>
-      </span><br>
+      <span style="font-size: 18px">
+        Defu Yang,
+      </span>
+      <span>
+        <a class='urllink' href="http://faculty.neu.edu.cn/lusw/zh_cn/index.htm"  title='' rel='nofollow'>Shaowen Lu</a>,
+      </span>
+      <span>
+        Member, IEEE, Jing Yan
+      </span>
+      <br>
     </p>
-    <p class='vspace STYLE2' style='text-align: center;'>
-      University of California, Los Angeles (UCLA), USA </p>
+    <!-- <p class='vspace STYLE2' style='text-align: center;'>
+      University of California, Los Angeles (UCLA), USA </p> -->
 
 
     <div class=vspace> </div>
     <br>
     <h2 align="center">Abstract</h2>
-    <P align="justify">Video sequences contain rich dynamic patterns, such as dynamic texture patterns that exhibit
-      stationarity in the temporal
-      domain, and action patterns that are non-stationary in either spatial or temporal domain. We show that a
-      spatialtemporal
-      generative ConvNet can be used to model and synthesize dynamic patterns. The model defines a probability
-      distribution on the video sequence, and the log probability is defined by a spatial-temporal ConvNet that consists
-      of
-      multiple layers of spatial-temporal filters to capture spatialtemporal patterns of different scales. The model can
-      be
-      learned from the training video sequences by an “analysis by synthesis” learning algorithm that iterates the
-      following
-      two steps. Step 1 synthesizes video sequences from the currently learned model. Step 2 then updates the model
-      parameters
-      based on the difference between the synthesized video sequences and the observed training sequences. We
-      show that the learning algorithm can synthesize realistic dynamic patterns </P>
-    <div class=line> </div>
-    <p></p>
+    <P align="justify">This paper proposes an energy-based generative
+      video modeling framework with hierarchical latent variables for
+      learning complex spatiotemporal dynamics. Conventional latent
+      variable models typically rely on fixed Gaussian priors, whose
+      limited expressive capacity poses significant challenges in modeling complex dynamic patterns in videos and time-series data.
+      To overcome the representational limitations of fixed Gaussian
+      priors, we introduce layer-wise energy functions for each latent
+      variable, enabling the capture of intra-layer contextual structures
+      while jointly modeling and correcting the dependencies across
+      different layers of latent variables. In addition, we employ shortrun MCMC as the inference engine for latent variables, using
+      a finite number of Langevin dynamics steps to approximate the
+      posterior distribution, thereby avoiding the need for separate
+      inference networks such as variational encoders. Experimental
+      results demonstrate that the proposed method significantly outperforms variational autoencoder (VAE)-based generative models
+      in terms of generation quality and temporal consistency. </P>
+    <!-- <div class=line> </div> -->
+    <!-- <p></p>
     <h2>Paper </h2>
     <P>The CVPR paper can be downloaded <a class=urllink title="" href="./STGConvNet_file/doc/STGConvNet.pdf"
         rel=nofollow><span class="STYLE20">here</span></a>. </P>
@@ -451,25 +464,25 @@ a:hover{
     </div>
 
     <div class=vspace></div>
-
+-->
     <div class=line> </div>
-    <p></p>
+    <p></p> 
     <h2>Experiments</h2>
     <h3 class="STYLE16">Experiment 1: Generating dynamic textures with only temporal stationarity </h3>
-    <p class="STYLE14">Exp 2.1: Learning from one training video </p>
-    <p class="STYLE15"> In each example, the first one is the observed video, the other three are the synthesized
-      videos.</p>
+    <p class="STYLE14">Exp 1.1: Analysis of Video Generation Quality: </p>
+    <!-- <p class="STYLE15"> In each example, the first one is the observed video, the other three are the synthesized
+      videos.</p> -->
     <form id="exp_texture" align='center'>
       <div class="div-table" align='center'>
         <div class="headRow" align='center'>
           <div class="div-table-col-2">
             <center>
-              <h5>Burning fire </h5>
+              <h5>Panda </h5>
             </center>
           </div>
           <div class="div-table-col-2">
             <center>
-              <h5>Waterfall</h5>
+              <h5>Boiling water</h5>
             </center>
           </div>
         </div>
@@ -477,12 +490,12 @@ a:hover{
         <div class="div-table-row" align='center'>
           <div class="div-table-col-2" >
             <center>
-              <img src="./logo.jpg" height="100">
+              <img src="./gifs/panda.gif" height="100">
             </center>
 
           </div>
           <div class="div-table-col-2">
-            <center><img src="./logo.jpg" height="100">
+            <center><img src="./gifs/boiling_water.gif" height="100">
             </center>
           </div>
         </div>
@@ -490,58 +503,7 @@ a:hover{
         <div class="headRow" align='center'>
           <div class="div-table-col-2">
             <center>
-              <h5>Flashing lights </h5>
-            </center>
-          </div>
-          <div class="div-table-col-2">
-            <center>
-              <h5>Washing machine washing clothes </h5>
-            </center>
-          </div>
-        </div>
-
-        <div class="div-table-row">
-          <div class="div-table-col-2">
-            <center><img src="exp1/flash_light/movie_normal.gif" height="100">
-            </center>
-
-          </div>
-          <div class="div-table-col-2">
-            <center><img src="exp1/washing_machine/movie_slow.gif" height="100">
-            </center>
-          </div>
-        </div>
-
-        <div class="headRow" align='center'>
-          <div class="div-table-col-2">
-            <center>
-              <h5>Boiling water</h5>
-            </center>
-          </div>
-          <div class="div-table-col-2">
-            <center>
-              <h5>Mountain stream </h5>
-            </center>
-          </div>
-        </div>
-
-        <div class="div-table-row">
-          <div class="div-table-col-2">
-            <center>
-              <center><img src="exp1/boiling_water/movie_normal.gif" height="100">
-              </center>
-
-          </div>
-          <div class="div-table-col-2">
-            <center><img src="exp1/water_stone/movie_normal.gif" height="100">
-            </center>
-          </div>
-        </div>
-
-        <div class="headRow" align='center'>
-          <div class="div-table-col-2">
-            <center>
-              <h5>Fountain</h5>
+              <h5>Fire </h5>
             </center>
           </div>
           <div class="div-table-col-2">
@@ -553,6 +515,57 @@ a:hover{
 
         <div class="div-table-row">
           <div class="div-table-col-2">
+            <center><img src="./gifs/fire.gif" height="100">
+            </center>
+
+          </div>
+          <div class="div-table-col-2">
+            <center><img src="./gifs/spring_water.gif" height="100">
+            </center>
+          </div>
+        </div>
+
+        <div class="headRow" align='center'>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Dance</h5>
+            </center>
+          </div>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Waterfall </h5>
+            </center>
+          </div>
+        </div>
+
+        <div class="div-table-row">
+          <div class="div-table-col-2">
+            <center>
+              <center><img src="./gifs/wangbin.gif" height="100">
+              </center>
+
+          </div>
+          <div class="div-table-col-2">
+            <center><img src="./gifs/waterfall.gif" height="100">
+            </center>
+          </div>
+        </div>
+
+        <!-- <div class="headRow" align='center'>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Fountain</h5>
+            </center>
+          </div>
+          <div class="div-table-col-2">
+            <center>
+              <h5>Spring water </h5>
+            </center>
+          </div>
+        </div> -->
+
+        <!-- <div class="div-table-row">
+          <div class="div-table-col-2">
             <center><img src="exp1/fountain/movie_normal.gif" height="100">
             </center>
           </div>
@@ -560,13 +573,13 @@ a:hover{
             <center><img src="exp1/spring_water/movie_normal.gif" height="100">
             </center>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </form>
 
-    <p class="STYLE8"><span class="STYLE14">Exp 2.2: Learning from multiple training videos </span></p>
-    <p class="STYLE8 STYLE15">The first panel displays 30 observed videos, the second panel displays 39 synthesized
+     <p class="STYLE8"><span class="STYLE14">Exp 1.2: Effectiveness of Hierarchical Latent Representations </span></p>
+   <!-- <p class="STYLE8 STYLE15">The first panel displays 30 observed videos, the second panel displays 39 synthesized
       videos.</p>
 
     <form id="exp_texture" align='center'>
@@ -600,10 +613,10 @@ a:hover{
       </div>
     </form>
 
-    <div class=line> </div>
-    <h3 class="STYLE16">Experiment 2: Generating action patterns without spatial or temporal stationarity </h3>
+    <div class=line> </div> -->
+    <!-- <h3 class="STYLE16">Experiment 2: Generating action patterns without spatial or temporal stationarity </h3>
     <p class="STYLE15">In the example of running cow (tiger), the first five (two) are the original videos, the rest are
-      the synthesized videos.</p>
+      the synthesized videos.</p> -->
 
 
     <form id="exp_texture" align='center'>
@@ -611,17 +624,17 @@ a:hover{
         <div class="headRow">
           <div class="div-table-col-single">
             <center>
-              <h5>Running cows </h5>
+              <h5>Lions </h5>
             </center>
           </div>
         </div>
 
         <div class="div-table-col-single">
           <center>
-            <p><img src="exp1/cow/movie.gif" width="881" height="42"></p>
+            <p><img src="./gifs/lion.gif" width="881" height="142"></p>
           </center>
         </div>
-        <div class="headRow">
+        <!-- <div class="headRow">
           <div class="div-table-col-single">
             <center>
               <h5>Runing tigers </h5>
@@ -632,14 +645,44 @@ a:hover{
         <div class="div-table-col-single">
           <center><img src="exp1/tiger/movie.gif" width="881" height="65">
           </center>
-        </div>
+        </div> -->
 
       </div>
     </form>
 
+    <p class="STYLE8"><span class="STYLE14">Exp 1.3: Comparison and Ablation Studies </span></p>
+    <form id="exp_texture" align='center'>
+      <div class="div-table" align='center'>
+        <div class="headRow" align='center'>
+          <div class="div-table-col-2">
+            <center>
+              <h5>FMF_or </h5>
+            </center>
+          </div>
+          <div class="div-table-col-2">
+            <center>
+              <h5>FMF_gen</h5>
+            </center>
+          </div>
+        </div>
 
+        <div class="div-table-row" align='center'>
+          <div class="div-table-col-2" >
+            <center>
+              <img src="./gifs/FMF_or.gif" width="423" height="250">
+            </center>
+
+          </div>
+          <div class="div-table-col-2">
+            <center><img src="./gifs/FMF_gen.gif" width="423" height="250">
+            </center>
+          </div>
+        </div>
+
+      </div>
+    </form>
     <div class=line> </div>
-    <h3 class="STYLE16">Experiment 3: Learning from incomplete data </h3>
+    <h3 class="STYLE16">Experiment 2: Learning from incomplete data </h3>
     <p class="STYLE8 STYLE15">In each example, the first one is the ground truth video, the second one is the occluded
       training video, and the third one is the recovered result.</p>
 
@@ -648,7 +691,7 @@ a:hover{
         <div class="headRow" align='center'>
           <div class="div-table-col-3">
             <center>
-              <h5>Single region masks </h5>
+              <h5>single region masks </h5>
             </center>
           </div>
           <div class="div-table-col-3">
@@ -664,45 +707,65 @@ a:hover{
         </div>
       </div>
     </form>
-
-
-    <div class="div-table-col-single">
+    
+    <div class="div-table-col-3s">
       <center>
-        <img src="exp2/chatelet/fullsize/original.gif" width="174" height="130"> <img
-          src="exp2/chatelet/fullsize/masked.gif" width="174" height="130"> <img src="exp2/chatelet/fullsize/result.gif"
-          width="174" height="130">
+        <img src="./gifs/flag.gif" width="300" height="110"> 
+        <div class="div-table-col-3s"></div>
+        <img src="./gifs/ocean.gif" width="300" height="110"> 
       </center>
     </div>
-
-
+    <div class="div-table-col-3s">
+      <center> 
+        <img src="./gifs/fountain.gif"   width="300" height="110"> 
+        <div class="div-table-col-3s"></div>
+        <img src="./gifs/windmill.gif"   width="300" height="110"> 
+        
+      </center>
+    </div>
+    <div class="div-table-col-3s">
+      <center>
+        <img src="./gifs/traffic.gif"   width="300" height="110">
+        <div class="div-table-col-3s"></div>
+        <img src="./gifs/playing.gif"   width="300" height="110">
+      </center>
+    </div>
+  <div class="div-table-col-3s"></div>
+  <p></p>
   </form>
-
   <div class=line-seg> </div>
 
-  <p></p>
-  <h2>Acknowledgement</h2>
+  <h1></h1>
+ <div style="height: 10px;"></div>
+  <!-- <h2>Acknowledgement</h2>
 
   <p align="justify">The work is supported by NSF DMS 1310391, DARPA SIMPLEX N66001-15-C-4035, ONR MURI
     N00014-16-1-2007, and DARPA ARO W911NF-16-1-0579. We thank Zilong Zheng for assistance with python implementation.
   </p>
-  <div class=line-seg> </div>
+  <div class=line-seg> </div> -->
 
   <p></p>
   <h2>Reference</h2>
 
-  <p align="justify">[1] Xie, Jianwen, et al. "A theory of generative convnet." <em>International Conference on Machine
-      Learning</em>. 2016.</p>
-  <p align="justify">[2] Doretto, Gianfranco, et al. "Dynamic textures." <em>International Journal of Computer
-      Vision</em>. 2003.</p>
-  <p align="justify">[3] Goyette, Nil, et al. "A novel video dataset for change detection benchmarking." <em>IEEE
-      Transactions on Image Processing</em>. 2014.</p>
+  <p align="justify">[1] Ho, Jonathan, Ajay Jain, and Pieter Abbeel."Denoising diffusion probabilistic models."
+    <em>Advances in neural information processing systems 33(2020): 6840-6851.</em>
+  </p>
+  <p align="justify">[2] Song, Y., Sohl-Dickstein, J., Kingma, D. P., Kumar, A., Ermon, S., &
+    Poole, B. (2020). Score-based generative modeling through stochastic
+    differential equations.
+    <em>arXiv preprint arXiv:2011.13456.</em>
+  </p>
+  <p align="justify">[3] Guo, J., Lu, S., Cai, H., Zhang, W., Yu, Y., & Wang, J. Long text generation via adversarial training with leaked information.
+    <em>In Proceedings
+      of the AAAI conference on artificial intelligence Vol. 32. No. 1. 2018</em>
+  </p>
+  
   <div class=line> </div>
   <h4>
-    <center><a class='urllink' href='./STGConvNet.html' title='' rel='nofollow'>Top</a> </center>
+    <center><a class='urllink' href='#' title='' rel='nofollow'>Top</a> </center>
   </h4>
   </div>
 </div>
 </body>
-
 
 </html>
