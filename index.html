@@ -383,8 +383,8 @@ a:hover{
 
   <div class="container">
     <br><br>
-    <h1 class="STYLE6" style="TEXT-ALIGN: center"><span class="STYLE6" style="TEXT-ALIGN: center">Energy-Based Multi-Latent Variable Generative Modeling for
-      Dynamic Patterns</span></H1>
+    <h1 class="STYLE6" style="TEXT-ALIGN: center"><span class="STYLE6" style="TEXT-ALIGN: center">Hierarchical Energy-Based Priors for Disentangled Representation of
+Dynamic Texture</span></H1>
     <!-- <h1 class="STYLE6" style="TEXT-ALIGN: center">Learning Energy-Based Models for Video Synthesis </H1> -->
     <br>
     <span class="STYLE2"><br>
@@ -408,21 +408,28 @@ a:hover{
     <div class=vspace> </div>
     <br>
     <h2 align="center">Abstract</h2>
-    <P align="justify">This paper proposes an energy-based generative
-      video modeling framework with hierarchical latent variables for
-      learning complex spatiotemporal dynamics. Conventional latent
-      variable models typically rely on fixed Gaussian priors, whose
-      limited expressive capacity poses significant challenges in modeling complex dynamic patterns in videos and time-series data.
-      To overcome the representational limitations of fixed Gaussian
-      priors, we introduce layer-wise energy functions for each latent
-      variable, enabling the capture of intra-layer contextual structures
-      while jointly modeling and correcting the dependencies across
-      different layers of latent variables. In addition, we employ shortrun MCMC as the inference engine for latent variables, using
-      a finite number of Langevin dynamics steps to approximate the
-      posterior distribution, thereby avoiding the need for separate
-      inference networks such as variational encoders. Experimental
-      results demonstrate that the proposed method significantly outperforms variational autoencoder (VAE)-based generative models
-      in terms of generation quality and temporal consistency. </P>
+    <P align="justify">Learning disentangled representations of hierarchical spatiotemporal patterns in dynamic textures is a challenging
+problem, as existing generative models with energy-based priors
+often adopt independent latent variables and a single energy function, leading to information entanglement across different levels.
+To address this issue, we propose a hierarchical energy-based
+prior framework for disentangled representation of dynamic
+textures. Specifically, we introduce conditional hierarchical latent
+variables and assign independent energy models to each layer,
+imposing layer-wise constraints that progressively correct the
+non-Gaussian latent structure and explicitly decouple high-level
+dynamic semantics from low-level texture details. A multi-level
+progressive generation mechanism is further developed, where
+each layer’s generation is regularized by its corresponding energy
+model, enabling coarse-to-fine synthesis from global dynamics
+to local textures. Moreover, we design an energy gradient
+driven hierarchical posterior inference mechanism using shortrun Langevin dynamics, which steers the inference toward
+the structured prior and prevents representation entanglement.
+Extensive experiments on multiple dynamic texture datasets
+(including water waves, flames, and real industrial furnace
+videos) demonstrate that the proposed method achieves superior
+disentanglement, significantly reduces redundant information
+across layers, and outperforms state-of-the-art generative models
+in both synthesis quality and video inpainting tasks. </P>
     <!-- <div class=line> </div> -->
     <!-- <p></p>
     <h2>Paper </h2>
